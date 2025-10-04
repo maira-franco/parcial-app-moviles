@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,7 +37,12 @@ fun ComprobanteView( monto: String, saldoRestante: String, navController: NavCon
         Spacer(spaceModifier)
         Text("Fecha: $fechaHora", style = MaterialTheme.typography.bodyMedium)
         Spacer(spaceModifier)
-        Button(onClick = { navController.popBackStack() }) {
+        Button(
+            onClick = { navController.popBackStack() },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Red
+            )
+        ) {
             Text("Volver")
         }
     }
