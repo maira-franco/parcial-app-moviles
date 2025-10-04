@@ -1,4 +1,4 @@
-package com.example.parcial
+package com.example.parcial_billetera
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
