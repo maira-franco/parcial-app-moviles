@@ -1,5 +1,6 @@
 package com.example.parcial_billetera
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -32,7 +34,7 @@ fun BilleteraView(navController: NavController) {
     var retiro by remember { mutableStateOf("") }
     var error by remember { mutableStateOf("") }
     val spaceModifier = Modifier.height(10.dp)
-    val columModifier = Modifier.fillMaxSize().padding(20.dp)
+    val columModifier = Modifier.fillMaxSize().padding(20.dp).background(Color(0xFFEDEDED))
     val columVertical = Arrangement.Center
     val columHorizontal = Alignment.CenterHorizontally
 
@@ -49,15 +51,19 @@ fun BilleteraView(navController: NavController) {
         Button(
             onClick = {
                 val monto = retiro.toIntOrNull()
-                if ( monto != null && monto > 0 && monto <= saldo ) {
+                if (monto != null && monto > 0 && monto <= saldo) {
                     saldo -= monto
                     navController.navigate("comprobante/$monto/$saldo")
                 } else {
                     error = "Monto inválido o insuficiente"
                 }
-            }
+            },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Red,
+                contentColor = Color.White // color del texto
+            )
         ) {
-            Text( "Retirar" )
+            Text("Retirar")
         }
         Spacer( spaceModifier )
         Text( text = error, color = Color.Red )
